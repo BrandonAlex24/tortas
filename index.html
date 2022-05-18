@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#bla"  />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="manifest" href="manifest.json">  <!--aviso del manifest -->
+    <title>Tortas "Don Bebo"</title>
+    
+
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="container-fluid bg-dark position-sticky top-0">
+      <ul
+        class="nav nav-pills mb-3 py-3 container"
+        id="pills-tab"
+        role="tablist"
+      >
+        <li class="nav-item text-primary" role="presentation">
+          <a
+            class="nav-link "
+            id="pills-home-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-home"
+            type="button"
+            role="tab"
+            aria-controls="pills-home"
+            aria-selected="true"
+            >Personaliza tu torta</a
+          >
+        </li>
+       
+        
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            id="pills-profile-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-profile"
+            type="button"
+            role="tab"
+            aria-controls="pills-profile"
+            aria-selected="false"
+            >Productos</a
+          >
+        </li>
+     <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            id="pills-contact-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-contact"
+            type="button"
+            role="tab"
+            aria-controls="pills-contact"
+            aria-selected="false"
+            >Pedidos</a
+          >
+        </li>
+      </ul>
+    </header>
+
+    <header class="header">
+      <div class="container">
+      <div class="row">
+           <div class="four columns">
+               <h1><img src="img/to1.png" alt="">Tortas "Don Bebo"</h1>
+               
+              </div>
+
+    <div class="alert container position-sticky top-0 alert-primary hide" role="alert">
+    Producto Añadido al carrito!
+    </div>
+    <div class="alert container position-sticky top-0 alert-danger remove" role="alert">
+      Producto removido!
+    </div>
+
+    <div class="tab-content" id="pills-tabContent">
+      <div
+        class="tab-pane fade "
+        id="pills-home"
+        role="tabpanel"
+        aria-labelledby="pills-home-tab"
+      >
+        <h2 class="h4 m-4 text-primary">Personaliza tus Tortas</h2>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="arma-head">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#torta-arma" aria-expanded="false" aria-controls="torta-arma">
+                  Arma tu torta
+              </button>
+
+          </h2>
+          <div id="torta-arma" class="accordion-collapse collapse" aria-labelledby="arma-head"
+              data-bs-parent="#tortas">
+              <div class="accordion-body">
+                  <div class="container">
+                      <div class="row g-2">
+                          <div id="ingredientes" class="col-5">
+                              <h5>Ingredientes</h5>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Chorizo
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Cebolla
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Huevo
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Quesillo
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Milanesa
+                                  de pollo
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Milanesa
+                                  de res</div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Jamón
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;"
+                                      onclick="añadir(this)"></i>Salchicha</div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Pierna
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer; " onclick="añadir(this)"></i>Piña
+                              </div>
+                              <div class="p-1"><i
+                                      class="fa-regular fa-circle-plus text-success me-2"
+                                      style="cursor: pointer;" onclick="añadir(this)"></i>Sirloin
+                              </div>
+                          </div>
+                          <div class="col-7">
+                              <form action="#" id="form-torta-nueva">
+                                  <div class="p-3 border bg-ligh">
+                                      <div class="col-12">
+                                          <label for="cantidad-torta-nueva"
+                                              class="form-label">Cantidad</label>
+                                          <input type="number" name="cantidad-torta-nueva"
+                                              id="cantidad-torta-nueva" class="form-control"
+                                              min="1" max="20" value="1">
+                                      </div>
+                                      <div class="col-12">
+                                          <label for="ingrediente-1"
+                                              class="form-label">Ingrediente
+                                              1</label>
+                                          <div class="input-group">
+                                              <input type="text" name="ingrediente-1"
+                                                  id="ingrediente-1" class="form-control"
+                                                  readonly>
+                                              <span class="input-group-text"
+                                                  style="cursor: pointer;"
+                                                  onclick="eliminar(1)"><i
+                                                      class="fa-regular fa-trash-can text-danger"></i></span>
+                                          </div>
+                                      </div>
+                                      <div class="col-12">
+                                          <label for="ingrediente-2"
+                                              class="form-label">Ingrediente
+                                              2</label>
+                                          <div class="input-group">
+                                              <input type="text" name="ingrediente-2"
+                                                  id="ingrediente-2" class="form-control"
+                                                  readonly>
+                                              <span class="input-group-text"
+                                                  style="cursor: pointer;"
+                                                  onclick="eliminar(2)"><i
+                                                      class="fa-regular fa-trash-can text-danger"></i></span>
+                                          </div>
+                                      </div>
+                                      <div class="col-12">
+                                          <label for="ingrediente-3"
+                                              class="form-label">Ingrediente
+                                              3</label>
+                                          <div class="input-group">
+                                              <input type="text" name="ingrediente-3"
+                                                  id="ingrediente-3" class="form-control"
+                                                  readonly>
+                                              <span class="input-group-text"
+                                                  style="cursor: pointer;"
+                                                  onclick="eliminar(3)"><i
+                                                      class="fa-regular fa-trash-can text-danger"></i></span>
+                                          </div>
+                                      </div>
+                                      <span id="uno-mas" onclick="extra(this)"
+                                          style="cursor: pointer;">
+                                          <i
+                                              class="fa-solid fa-plus text-success me-2"></i>Ingrediente
+                                          extra</span>
+                                      <div id="ing-extra" class="col-12 d-none">
+                                          <label for="ingrediente-4"
+                                              class="form-label">Ingrediente
+                                              4</label>
+                                          <div class="input-group">
+                                              <input type="text" name="ingrediente-4"
+                                                  id="ingrediente-4" class="form-control"
+                                                  readonly>
+                                              <span class="input-group-text"
+                                                  style="cursor: pointer;"
+                                                  onclick="eliminar(4)"><i
+                                                      class="fa-regular fa-trash-can text-danger"></i></span>
+                                          </div>
+                                      </div>
+                                      <div class="col-12 text-end mt-2">
+                                          <!-- <button type="submit"
+                                              class="btn btn-outline-success btn-block"><i
+                                                  class="fa-regular fa-circle-plus"></i>
+                                              Agregar</button> -->
+                                              <button class="btn btn-primary button">Añadir torta</button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------- -->
+      </div>
+
+      
+      <div
+        class="tab-pane fade show active container"
+        id="pills-profile"
+        role="tabpanel"
+        aria-labelledby="pills-profile-tab"
+      >
+        <h2 class="h4 m-4 text-primary">Selecciona tus Tortas</h2>
+
+        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Chavo del 8</h5>
+              <img src="./img/torta1.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Jamon y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 39</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La chilindrina</h5>
+              <img src="./img/torta2.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Salchicha y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 39</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La kiko</h5>
+              <img src="./img/torta3.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Jamon, Salchicha y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$49</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Amandititita</h5>
+              <img src="./img/torta4.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Huevo, Chorizo y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$49</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Yuri</h5>
+              <img src="./img/torta5.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Pierna, Jamon, Piña y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 74</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Capulina</h5>
+              <img src="./img/torta6.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Chuleta, Piña, Jamon y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 89</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La piporro</h5>
+              <img src="./img/torta7.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Chuleta enchipollada con Jamon y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 89</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Brad Pitt</h5>
+              <img src="./img/torta8.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Milanesa de Pollo, Pierna de Huevo y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 94</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Beyonce</h5>
+              <img src="./img/torta9.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Sirloin, Pierna y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 94</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">La Terminator</h5>
+              <img src="./img/torta10.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">Sirloin, Milanesa de Res, Milanesa de Pollo, Chuleta y Quesillo.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 167</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          
+          <h2>Selecciona tus Bebidas</h2>
+
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">Coca-Cola</h5>
+              <img src="./img/re.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">600ml.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 15</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">Boing de Mango</h5>
+              <img src="./img/re1.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">500ml.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 15</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">Agua Natural</h5>
+              <img src="./img/re2.jfif" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">1 litro.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 13</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">Sangria</h5>
+              <img src="./img/re3.jfif" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">600ml.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 14</span></h5>
+                <div class="d-grid gap-2">
+                <button  class="btn btn-primary button">Añadir pedido</button>
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="col d-flex justify-content-center mb-4">
+            <div class="card shadow mb-1 bg-dark rounded" style="width: 20rem;">
+              <h5 class="card-title pt-2 text-center text-primary">Jarrito de Manzana</h5>
+              <img src="./img/re4.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text text-white-50 description">2 litros.</p>
+                <h5 class="text-primary">Precio: <span class="precio">$ 22</span></h5>
+                <div class="d-grid gap-2">
+                  <button  class="btn btn-primary button">Añadir pedido</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div
+        class="tab-pane fade carrito"
+        id="pills-contact"
+        role="tabpanel"
+        aria-labelledby="pills-contact-tab"
+      >
+      <br>
+      <table class="table table-dark table-hover">
+        <thead>
+          <tr class="text-primary">
+            <th scope="col">#</th>
+            <th scope="col">Productos</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          
+        
+          
+        </tbody>
+      </table>
+      <br><br>
+
+      <div class="col-12 col-md-5">
+        <table class="table table-danger table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="pedidos-realizados">
+
+            </tbody>
+        </table>
+        <!-- <button id="confirmar-pedido" type="button" class="btn btn-danger" data-bs-toggle="modal"
+            data-bs-target="#modalConfirmar" disabled>Confirmar pedido</button> -->
+    </div>
+
+      <div class="row mx-4">
+        <div class="col">
+          <h3 class="itemCartTotal text-white" >Total: 0</h3>
+          <label>Cantidad Recibida</label><br>
+          <input type="number" id="cantidad"><br>
+          <label>Cambio</label><br>
+          <input type="number" id="precio" value="precio" disabled>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <button class="btn btn-success">COMPRAR</button>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+
+    <footer class="bg-dark p-3 mt-5">
+      <p class="text-center m-0 text-muted">Tortas hechas por:</p>
+    </footer>
+    <div class="barra">
+      <div class="container">
+          <div class="row">
+              <div class="four columns icono icono1">
+                  <p>Martinez Varela Angel<br>
+                  413676 </p>
+              </div>
+              <div class="four columns icono icono1">
+                  <p>Osorio Garcia Brandon Alexander<br>
+                  266758 </p>
+              </div>
+              <div class="four columns icono icono1">
+                  <p>Dorantes Flores Alan Eduardo<br>
+                  413831 </p>
+              </div>
+
+          </div>
+      </div>
+
+  </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/app.js"></script>
+    <script src="https://brandonalex24.github.io/tortas/pedidos.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/fontawesome.min.js"></script>
+<!--         <script src="https://brandonalex24.github.io/tortas/js/script.js"></script>
+    <script src="https://brandonalex24.github.io/tortas/sw.js"></script> -->
+  </body>
+</html>

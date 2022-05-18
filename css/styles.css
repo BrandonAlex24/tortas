@@ -1,0 +1,140 @@
+/* * {
+  box-sizing: border-box;
+} 
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}*/
+label {
+  color: white;
+  
+}
+#p-1{
+  color: white;
+}
+/*
+input[type=submit] {
+  background-color: orange;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: center;
+}
+input[type=submit]:hover {
+  background-color: orangered;
+  color: white;
+}
+.contenedor {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px; 
+  width: 100%;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  float: left;
+  width: 50%;
+}
+.col-25 {
+  float: right;
+  width: 50%;
+  margin-top: 6px;
+}
+.col-75 {
+  float: right;
+  width: 50%;
+  margin-top: 6px;
+}
+.container2 {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 25px;
+  float: right;
+  width: 50%;
+}
+.col-252 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+.col-752 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+} */
+/* Clear floats after the columns
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+/* @media screen and (max-width: 600px) {
+  .col-25, .col-75, .col-252, .col-752 input[type=submit] {
+    width: 50%;
+    margin-top: 0;
+  }
+} */
+/* ----------------------------------------------------- */
+body{
+  background-color: black;
+}
+h1{
+  text-align: center;
+  color: aliceblue;
+}
+.barra {
+  padding: 20px 0;
+  background-color: #fbaf32;
+  background: -webkit-linear-gradient(left, #b95a00 0%, #ad5400 100%);
+}
+.barra p {
+  margin: 0;
+  color: white;
+  }
+header, .alert{
+  z-index: 100;
+}
+.description{
+  height: 25px;
+  overflow: hidden;
+  transition: height .3s ease-in .3s;
+}
+.description:hover{
+  height: 80px;
+}
+.carrito{
+  min-height: 80vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+.table__productos{
+  display: flex;
+}
+.table__productos > img{
+  width: 9rem;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+.table__cantidad > input{
+  width: 40px;
+  border: none;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+.hide, .remove{
+  display: none;
+}
