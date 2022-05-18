@@ -1,32 +1,12 @@
+const CacheEstatico = 'Estatico-1';
+const CacheInmutable = 'Inmutable-1';
+const CacheDinamico = 'Dinamico-1';
 
-const CacheEstatico = "st-1";
-const CacheInmutable = "in-1";
-const CacheDinamico = "din-1";
+self.addEventListener('install', e=>{  
 
-function LimpiarCache(cacheName, numeroItems) {
-	caches.open(cacheName).then((cache) => {
-		return cache.keys().then((keys) => {
-			//console.log(keys);
-			if (keys.length > numeroItems)
-				cache.delete(keys[0]).then(LimpiarCache(cacheName, numeroItems)); //Recursividad la funcion se llama a si misma
-		});
-	});
-}
-
-self.addEventListener("install", (e) => {
-	const cacheProm = caches.open(CacheEstatico).then((cache) => {
-		cache.addAll([
-			"/Tortas-El-Timmy/",
-            "/Tortas-El-Timmy/index.html",
-            "/Tortas-El-Timmy/confirmacion.html",
-            "/Tortas-El-Timmy/pedidos.html",
-            "/Tortas-El-Timmy/css/style.css",
-            "/Tortas-El-Timmy/css/tortas.css",
-            "/Tortas-El-Timmy/js/app.js",
-            "/Tortas-El-Timmy/js/confirmar.js",
-            "/Tortas-El-Timmy/js/pedidos.js",
-
-			"/tortas/js/confirmar.js",
+    const cacheProm = caches.open(CacheEstatico)
+         .then(cache=>{
+             cache.addAll([
             "/tortas/js/pedidos.js",
 			"/tortas/",
 			"/tortas/index.html",
@@ -54,13 +34,13 @@ self.addEventListener("install", (e) => {
 			"/tortas/img/edit.png",
 			"/tortas/img/eliminar.png",			
 			"/tortas/img/estrellas.png"
-		]);
-	});
-	//cache inmutable no se modifica
-	const cacheInm = caches.open(CacheInmutable).then((cache) => {
-		cache.addAll([
-
-			"/tortas/manifest.json",
+             ]);
+        });
+        //cache inmutable no se modifica 
+            const cacheInm= caches.open(CacheInmutable)
+            .then(cache=>
+                cache.add([
+					"/tortas/manifest.json",
             "/tortas/css/bootstrap.min.css",
             "/tortas/css/fontawesome.min.css",
             "/tortas/js/bootstrap.bundle.min.js",
@@ -69,55 +49,93 @@ self.addEventListener("install", (e) => {
             "/tortas/js/cookies.min.js",            
 			"/tortas/img/error.png",
 			"/tortas/error.html",
-		]);
-	});
-	e.waitUntil(Promise.all([cacheProm, cacheInm]));
-	self.skipWaiting();
-});
+				])
+					);
 
-self.addEventListener("fetch", (e) => {
-	//Network with cache fallback
-	const respuesta = fetch(e.request)
-		.then((res) => {
-			//la app solicita un recurso de internet
-			if (!res)
-				//si falla (false or null)
-				return caches
-					.match(e.request) //lo busca y lo regresa al cache
-					.then((newRes) => {
-						if (!newRes) {
-							if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-								return caches.match("/tortas/img/error.png");
-							}
-							return caches.match("/tortas/error.html");
-						}
-						return newRes;
-					});
+         e.waitUntil(Promise.all([cacheProm,cacheInm]));
 
-			caches.match(e.request).then((cacheRes) => {
-				if (!cacheRes) {
-					caches.open(CacheDinamico).then((cache) => {
-						//abre el cache dinamico
-						cache.add(e.request.url); //mete el recurso que no existia en el cache
-						LimpiarCache(CacheDinamico, 100); // limpia hasta 100 elementos de cache
-					});
-				}
-			});
-			return res; //devuelve la respuesta
-		})
-		.catch((err) => {
-			// en caso de que encuetre algun error devuleve el archivo de cache
-			return caches
-				.match(e.request) //lo busca y lo regresa al cache
-				.then((newRes) => {
-					if (!newRes) {
-						if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-							return caches.match("/tortas/img/error.png");
-						}
-						return caches.match("/tortas/error.html");
-					}
-					return newRes;
-				});
-		});
-	e.respondWith(respuesta);
+})
+
+self.addEventListener('activate', e => {
+    event.waitUntil(
+        (async () => {
+            const keys = await caches.keys();
+            return keys.map(async (cache) => {
+                if(!cache == CacheEstatico) {
+                    console.log('Cache viejo eliminado' +cache);
+                    return await caches.delete(cache);
+                }
+            })
+        }) ()
+    ) 
+})
+
+self.addEventListener('fetch', e=>{
+
+    //cache with network fallback
+    const respuesta = caches.match(e.request) //buscamos un recurso
+    .then(res=>{
+        if(res) return res;
+        console.log('No existe el recurso en cache ->', e.request.url);
+
+        return fetch(e.request).then (newResp=>{ //no existe el archivo vamos a internet
+
+            caches.open(CacheDinamico)
+            .then(cache=>{
+                cache.put(e.request,newResp)
+            })
+
+            return newResp.clone();
+        }).catch(err=>{
+            return caches.match('/tortas/img/error.png'); //error-404/index.html | img/imagen sin conexion.jpg
+        });
+    });
+    e.respondWith(respuesta);
+})
+
+self.addEventListener('fetch', e=>{    
+    const respuesta = new Promise((resolve,reject)=>{
+        let rechazada = false;
+        const falloUno=()=>{
+            if(rechazada){
+                if(/\.(html)$/.test(e.request.url)){ 
+                    resolve(caches.match('/tortas/error.html'));
+                }
+                else{
+                    reject('7tortas/img/error.png'); 
+                }
+                            }
+            else{
+                rechazada = true; 
+            }
+        }
+
+
 });
+    e.respondWith(respuesta);
+})
+
+
+self.addEventListener('fetch', e=>{    
+    const respuesta = new Promise((resolve,reject)=>{
+        let rechazada = false;
+        const falloUno=()=>{
+            if(rechazada){ 
+                if(/\.(jpg)$/.test(e.request.url)){ 
+                    resolve(caches.match('/tortas/img/error.png'));
+                }
+                else{
+                    reject('/tortas/img/error.png');
+                }
+                            }
+            else{
+                rechazada = true; 
+            }
+        }
+
+
+});
+    e.respondWith(respuesta);
+})
+
+
