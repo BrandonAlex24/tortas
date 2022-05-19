@@ -1,21 +1,11 @@
-const CacheEstatico = "st-1";
-const CacheInmutable = "in-1";
-const CacheDinamico = "din-1";
+const CacheStatic = "estatico-1";
+const CacheDinamic = "dinamico-1";
+const CacheInmutable = "inmutable-1";
 
-// function LimpiarCache(cacheName, numeroItems) {
-// 	caches.open(cacheName).then((cache) => {
-// 		return cache.keys().then((keys) => {
-// 			//console.log(keys);
-// 			if (keys.length > numeroItems)
-// 				cache.delete(keys[0]).then(LimpiarCache(cacheName, numeroItems)); //Recursividad la funcion se llama a si misma
-// 		});
-// 	});
-// }
-
-self.addEventListener("install", (e) => {
-	const cacheProm = caches.open(CacheEstatico).then((cache) => {
+self.addEventListener("install", (event) => {
+	const cacheStatic = caches.open(CacheStatic).then((cache) => {
 		cache.addAll([
-			"js/pedidos.js",
+            "js/pedidos.js",
 			"/",
 			"index.html",
 			"css/style.css",
@@ -44,8 +34,7 @@ self.addEventListener("install", (e) => {
 			"img/estrellas.png",
 		]);
 	});
-	//cache inmutable no se modifica
-	const cacheInm = caches.open(CacheInmutable).then((cache) => {
+	const cacheInmutable = caches.open(CacheInmutable).then((cache) => {
 		cache.addAll([
 			"manifest.json",
             "css/bootstrap.min.css",
@@ -58,53 +47,58 @@ self.addEventListener("install", (e) => {
 			"404.html",
 		]);
 	});
-	e.waitUntil(Promise.all([cacheProm, cacheInm]));
+	event.waitUntil(Promise.all([cacheStatic, cacheInmutable]));
+	console.log("Instalado");
 	self.skipWaiting();
 });
 
-self.addEventListener("fetch", (e) => {
-	//Network with cache fallback
-	const respuesta = fetch(e.request)
-		.then((res) => {
-			//la app solicita un recurso de internet
-			if (!res)
-				//si falla (false or null)
-				return caches
-					.match(e.request) //lo busca y lo regresa al cache
-					.then((newRes) => {
-						if (!newRes) {
-							if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-								return caches.match("error.png");
-							}
-							return caches.match("404.html");
-						}
-						return newRes;
-					});
+self.addEventListener("activate", (event) => {
+	console.log("Evento activate");
+	caches.keys().then((keys) => {
+		keys.forEach((cache) => {
+			if (cache.includes("estatico") && !cache.includes(CacheStatic)) {
+				caches.delete(cache);
+			}
+		});
+	});
+});
 
-			caches.match(e.request).then((cacheRes) => {
-				if (!cacheRes) {
-					caches.open(CacheDinamico).then((cache) => {
-						//abre el cache dinamico
-						cache.add(e.request.url); //mete el recurso que no existia en el cache
-						LimpiarCache(CacheDinamico, 100); // limpia hasta 100 elementos de cache
-					});
-				}
-			});
-			return res; //devuelve la respuesta
-		})
-		.catch((err) => {
-			// en caso de que encuetre algun error devuleve el archivo de cache
-			return caches
-				.match(e.request) //lo busca y lo regresa al cache
-				.then((newRes) => {
-					if (!newRes) {
-						if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
+self.addEventListener("fetch", (event) => {
+	const respuesta = fetch(event.request)
+		.then((res) => {
+			if (res) {
+				caches.match(event.request).then((cache) => {
+					if (!cache) {
+						caches.open(CacheDinamic).then((cache) => {
+							cache.add(event.request.url);
+						});
+					}
+				});
+				return res;
+			} else {
+				return caches.match(event.request.url).then((newRes) => {
+					if (newRes) {
+						return newRes;
+					} else {
+						if (/\.(png|jpg)$/.test(event.request.url)) {
 							return caches.match("error.png");
 						}
-						return caches.match("404.html");
+						return caches.match("error.html");
 					}
-					return newRes;
 				});
+			}
+		})
+		.catch((error) => {
+			return caches.match(event.request.url).then((newRes) => {
+				if (newRes) {
+					return newRes;
+				} else {
+					if (/\.(png|jpg)$/.test(event.request.url)) {
+						return caches.match("error.png");
+					}
+					return caches.match("error.html");
+				}
+			});
 		});
-	e.respondWith(respuesta);
+	event.respondWith(respuesta);
 });
