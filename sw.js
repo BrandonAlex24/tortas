@@ -2,15 +2,15 @@ const CacheEstatico = "st-1";
 const CacheInmutable = "in-1";
 const CacheDinamico = "din-1";
 
-function LimpiarCache(cacheName, numeroItems) {
-	caches.open(cacheName).then((cache) => {
-		return cache.keys().then((keys) => {
-			//console.log(keys);
-			if (keys.length > numeroItems)
-				cache.delete(keys[0]).then(LimpiarCache(cacheName, numeroItems)); //Recursividad la funcion se llama a si misma
-		});
-	});
-}
+// function LimpiarCache(cacheName, numeroItems) {
+// 	caches.open(cacheName).then((cache) => {
+// 		return cache.keys().then((keys) => {
+// 			//console.log(keys);
+// 			if (keys.length > numeroItems)
+// 				cache.delete(keys[0]).then(LimpiarCache(cacheName, numeroItems)); //Recursividad la funcion se llama a si misma
+// 		});
+// 	});
+// }
 
 self.addEventListener("install", (e) => {
 	const cacheProm = caches.open(CacheEstatico).then((cache) => {
@@ -54,7 +54,7 @@ self.addEventListener("install", (e) => {
             "/tortas/js/fontawesome.min.js",
             "/tortas/js/jquery.min.js",
             "/tortas/js/cookies.min.js",            
-			"/tortas/img/error.png",
+			"/tortas/error.png",
 			"/tortas/404.html",
 		]);
 	});
@@ -74,7 +74,7 @@ self.addEventListener("fetch", (e) => {
 					.then((newRes) => {
 						if (!newRes) {
 							if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-								return caches.match("/tortas/img/error.png");
+								return caches.match("/tortas/error.png");
 							}
 							return caches.match("/tortas/404.html");
 						}
@@ -99,7 +99,7 @@ self.addEventListener("fetch", (e) => {
 				.then((newRes) => {
 					if (!newRes) {
 						if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-							return caches.match("/tortas/img/error.png");
+							return caches.match("/tortas/error.png");
 						}
 						return caches.match("/tortas/404.html");
 					}
