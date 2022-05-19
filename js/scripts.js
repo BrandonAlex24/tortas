@@ -1,6 +1,4 @@
-if (navigator.serviceWorker) {
-	navigator.serviceWorker.register("/tortas/sw.js");
-}
+
 /* -------------------------------------------*/
 const Clickbutton = document.querySelectorAll('.button')
 const tbody = document.querySelector('.tbody')
