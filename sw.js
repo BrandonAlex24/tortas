@@ -15,47 +15,47 @@ const CacheDinamico = "din-1";
 self.addEventListener("install", (e) => {
 	const cacheProm = caches.open(CacheEstatico).then((cache) => {
 		cache.addAll([
-			"/tortas/js/pedidos.js",
-			"/tortas/",
-			"/tortas/index.html",
-			"/tortas/css/style.css",
-			"/tortas/js/scripts.js",
-			"/tortas/sw.js",
-			"/tortas/manifest.js",
-			"/tortas/css/styles.css",			
-			"/tortas/img/to1.png",
-			"/tortas/img/to2.png",
-			"/tortas/img/torta.png",
-			"/tortas/img/torta1.jpg",
-			"/tortas/img/torta2.jpg",
-			"/tortas/img/torta3.jpg",
-			"/tortas/img/torta4.jpg",
-			"/tortas/img/torta5.jpg",
-			"/tortas/img/torta6.jpg",
-			"/tortas/img/torta7.jpg",
-			"/tortas/img/torta8.jpg",
-			"/tortas/img/torta9.jpg",
-			"/tortas/img/torta10.jpg",
-			"/tortas/img/acept.png",
-			"/tortas/img/cart.png",
-			"/tortas/img/e96074826f24bff572e12999ebc7bb1f_400x400.png",
-			"/tortas/img/edit.png",
-			"/tortas/img/eliminar.png",			
-			"/tortas/img/estrellas.png",
+			"js/pedidos.js",
+			"/",
+			"index.html",
+			"css/style.css",
+			"js/scripts.js",
+			"sw.js",
+			"manifest.js",
+			"css/styles.css",			
+			"img/to1.png",
+			"img/to2.png",
+			"img/torta.png",
+			"img/torta1.jpg",
+			"img/torta2.jpg",
+			"img/torta3.jpg",
+			"img/torta4.jpg",
+			"img/torta5.jpg",
+			"img/torta6.jpg",
+			"img/torta7.jpg",
+			"img/torta8.jpg",
+			"img/torta9.jpg",
+			"img/torta10.jpg",
+			"img/acept.png",
+			"img/cart.png",
+			"img/e96074826f24bff572e12999ebc7bb1f_400x400.png",
+			"img/edit.png",
+			"img/eliminar.png",			
+			"img/estrellas.png",
 		]);
 	});
 	//cache inmutable no se modifica
 	const cacheInm = caches.open(CacheInmutable).then((cache) => {
 		cache.addAll([
-			"/tortas/manifest.json",
-            "/tortas/css/bootstrap.min.css",
-            "/tortas/css/fontawesome.min.css",
-            "/tortas/js/bootstrap.bundle.min.js",
-            "/tortas/js/fontawesome.min.js",
-            "/tortas/js/jquery.min.js",
-            "/tortas/js/cookies.min.js",            
-			"/tortas/error.png",
-			"/tortas/404.html",
+			"manifest.json",
+            "css/bootstrap.min.css",
+            "css/fontawesome.min.css",
+            "js/bootstrap.bundle.min.js",
+            "js/fontawesome.min.js",
+            "js/jquery.min.js",
+            "js/cookies.min.js",            
+			"error.png",
+			"404.html",
 		]);
 	});
 	e.waitUntil(Promise.all([cacheProm, cacheInm]));
@@ -74,9 +74,9 @@ self.addEventListener("fetch", (e) => {
 					.then((newRes) => {
 						if (!newRes) {
 							if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-								return caches.match("/tortas/error.png");
+								return caches.match("error.png");
 							}
-							return caches.match("/tortas/404.html");
+							return caches.match("404.html");
 						}
 						return newRes;
 					});
@@ -99,9 +99,9 @@ self.addEventListener("fetch", (e) => {
 				.then((newRes) => {
 					if (!newRes) {
 						if (/\.(png|jpg|webp|jfif)$/.test(e.request.url)) {
-							return caches.match("/tortas/error.png");
+							return caches.match("error.png");
 						}
-						return caches.match("/tortas/404.html");
+						return caches.match("404.html");
 					}
 					return newRes;
 				});
